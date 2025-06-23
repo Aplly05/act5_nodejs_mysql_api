@@ -1,0 +1,156 @@
+openapi: 3.0.0
+info:
+  title: My API
+  version: 1.0.0
+  description: API for signup, login, email verification, password reset, and account management.
+
+servers:
+  - url: http://localhost:4000
+
+paths:
+  /accounts/register:
+    post:
+      summary: Register a new account
+      tags: [Accounts]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '200':
+          description: Registration successful
+
+  /accounts/authenticate:
+    post:
+      summary: Authenticate user and return JWT
+      tags: [Accounts]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthRequest'
+      responses:
+        '200':
+          description: Auth successful
+
+  /accounts/verify-email:
+    post:
+      summary: Verify user email
+      tags: [Accounts]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+      responses:
+        '200':
+          description: Verification successful
+
+  /accounts/forgot-password:
+    post:
+      summary: Request password reset
+      tags: [Accounts]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+      responses:
+        '200':
+          description: Password reset email sent
+
+  /accounts/validate-reset-token:
+    post:
+      summary: Validate password reset token
+      tags: [Accounts]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+      responses:
+        '200':
+          description: Token valid
+
+  /accounts/reset-password:
+    post:
+      summary: Reset user password
+      tags: [Accounts]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                password:
+                  type: string
+                confirmPassword:
+                  type: string
+      responses:
+        '200':
+          description: Password reset successful
+
+  /accounts:
+    get:
+      summary: Get all accounts (admin only)
+      tags: [Accounts]
+      responses:
+        '200':
+          description: Returns list of accounts
+
+components:
+  schemas:
+    RegisterRequest:
+      type: object
+      required:
+        - title
+        - firstName
+        - lastName
+        - email
+        - password
+        - confirmPassword
+        - acceptTerms
+      properties:
+        title:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        confirmPassword:
+          type: string
+        acceptTerms:
+          type: boolean
+
+    AuthRequest:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+        password:
+          type: string
