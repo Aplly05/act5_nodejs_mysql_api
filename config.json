@@ -1,0 +1,37 @@
+{
+
+  "database": {
+
+    "host": "localhost",
+
+    "port": 3306,
+
+    "user": "root",
+
+    "password": "TheGodzilla!25",
+
+    "database": "node-mysql-signup-verificatIon-apr"
+
+  },
+
+  "secret": "b548ac15-0afe-4a0e-9880-40bfda7ac12e710e2506-28b0-4c69-80ee-bfb3a3d8516ede32db38-1202-4633-80fe-66f64f64540f",
+
+  "emailFrom": "Fiona Koepp <fiona.koepp7@ethereal.email>",
+
+  "smtpOptions": {
+
+    "host": "smtp.ethereal.email",
+
+    "port": 587,
+
+    "auth": {
+
+      "user": "fiona.koepp7@ethereal.email",
+
+      "pass": "cXFN8BFCAPK5SHkVac"
+
+    }
+
+  }
+
+}
